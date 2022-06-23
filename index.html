@@ -6,12 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge - DOM</title>
   </head>
+  <style>
+    body {
+        background-color: #79915c;
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+    #app {
+      background-color: beige;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10%;
+      padding: 1rem 2rem;
+      height: 50vmin;
+      width: 300px;
+    }
+
+    #todo-title {
+      margin: 1rem 2rem;
+      background-color: bisque;
+      padding: 0.5rem 1rem;
+      border-radius: 10%;
+    }
+    #todo-subtitle {
+    margin-bottom: 0.5rem;
+    }
+    input {
+    display: flex;
+    flex-direction: column;
+    }
+
+     #todo-input {
+        border-radius: 0.3em;
+        margin: auto;
+    }
+    #todo-input:hover,
+    #todo-input:focus {
+       border-color: rgb(237, 100, 164);
+    }
+    #todo-output {
+      width: 100%;
+      text-align: left;
+      padding-left: 20px;
+      font-size: 18px;
+    }
+    #todo-submit {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
   <body>
     <div id="app">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
       <div id="todo-title">To-Do List</div>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
-      <div id="todo-subtitle">Today I Need To</div>
+      <div id="todo-subtitle">- Today I Need To -</div>
       <!-- Section: input -->
       <section>
         <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
@@ -33,16 +86,30 @@
       let input;
       let output;
 
+      button = document.getElementById("todo-submit")
+      input = document.getElementById("todo-input")
+      output = document.getElementById("todo-output")
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        output.innerHTML += `<li> ${toDoItem} </li>`;
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
+      button.addEventListener("click", function () {
+        fnClickHandler(input.value)
+      });
 
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+
+      input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          fnClickHandler(input.value);
+        }
+      });
     </script>
   </body>
 </html>
